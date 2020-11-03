@@ -22,8 +22,8 @@
       </div>
 
       <div>
-        <input @click="sendCmd1" type="button" value="Test CmdData1">
-        <input @click="sendCmd2" type="button" value="Test CmdData2">
+        <input @click="sendCmd('LivingLightOff')" type="button" value="Test CmdData1">
+        <input @click="sendCmd('LivingLightOn')" type="button" value="Test CmdData2">
       </div>
 
       </v-col>
@@ -68,15 +68,16 @@
           })
           .then((response) => {
             alert(response.data);
+            console.log(response.data);
           })
           .catch((e) => {
             alert(e);
           })
       },
 
-      sendCmd1() {
+      sendCmd(task_id) {
         this.axios.post('/send_cmd', {
-            cmd: 'LivingLightDown'
+            cmd: task_id
           })
           .then((response) => {
             alert(response.data);
@@ -85,17 +86,7 @@
             alert(e);
           })
       },
-      sendCmd2() {
-        this.axios.post('/send_cmd', {
-            cmd: 'LivingLightOn'
-          })
-          .then((response) => {
-            alert(response.data);
-          })
-          .catch((e) => {
-            alert(e);
-          })
-      },
+
     }
   }
 </script>
